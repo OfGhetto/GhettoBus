@@ -6,6 +6,9 @@
     <br>
 </p>
 
+Proyecto realizado en la asigntanura Taller de aplicaciones web utilizando PHP.
+Proyecto realizado de forma individual utilizando PHP con el framework YII2.
+
 Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
 rapidly creating small projects.
 
