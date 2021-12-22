@@ -7,14 +7,16 @@ use Yii;
 /**
  * This is the model class for table "user".
  *
+ * @property int $id
  * @property string $username
  * @property string $email
  * @property string $password
- * @property int $supervisor_id
+ * @property string $authKey
+ * @property string $accesToken
  *
- * @property Supervisor $supervisor
+ * @property Supervisor[] $supervisors
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
@@ -30,12 +32,8 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'email', 'password', 'supervisor_id'], 'required'],
-            [['supervisor_id'], 'integer'],
-            [['username'], 'string', 'max' => 16],
-            [['email'], 'string', 'max' => 40],
-            [['password'], 'string', 'max' => 32],
-            [['supervisor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Supervisor::className(), 'targetAttribute' => ['supervisor_id' => 'id']],
+            [['username','email'], 'string', 'max' => 80],
+            [['password','authKey', 'accesToken'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,20 +43,62 @@ class User extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+
             'username' => 'Username',
             'email' => 'Email',
-            'password' => 'Password',
-            'supervisor_id' => 'Supervisor ID',
+            'password' => 'Password'
+
         ];
     }
 
     /**
-     * Gets query for [[Supervisor]].
+     * Gets query for [[Supervisors]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSupervisor()
+    public function getSupervisors()
     {
-        return $this->hasOne(Supervisor::className(), ['id' => 'supervisor_id']);
+        return $this->hasMany(Supervisor::className(), ['id_usuario' => 'id']);
     }
+
+    public static function findIdentity($id)
+    {
+        return self::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return self::findOne(['accessToken'=>$token]);
+    }
+    public static function findByUsername($username){
+        return self::findOne(['username'=>$username]);
+    }
+
+    public function getId()
+    {
+        return $this ->id;
+    }
+
+    public function getAuthKey()
+    {
+        return $this->authKey;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return $this->authKey == $authKey;
+    }
+
+    public function validatePassword($password){
+        return password_verify($password, $this -> password);
+    }
+/*
+    public function validatePassword($password){
+        if (password_verify($password, $this -> password)) {
+            return $this->password == $password;
+        } else {
+            return false;
+        }
+    }
+    */
 }

@@ -26,11 +26,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'nombre',
             'apellido',
             'rut',
-            'bus_id',
+            [
+                'header'=>"Patente Bus",
+                'value' =>function($model){
+                    return $model->bus->patente;
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

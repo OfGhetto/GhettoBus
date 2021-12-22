@@ -26,11 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'valor',
             'fecha',
-            'chofer_id',
-            'supervisor_id',
+            [
+                'header'=>"Nombre Chofer",
+                'value' =>function($model){
+                    return $model->chofer->nombre;
+                }
+            ],
+            [
+                'header'=>"Nombre Supervisor",
+                'value' =>function($model){
+                    return $model->supervisor->nombre;
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

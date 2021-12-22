@@ -17,7 +17,7 @@ class SupervisorSearch extends Supervisor
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'id_usuario'], 'integer'],
             [['nombre', 'apellido', 'rut'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class SupervisorSearch extends Supervisor
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'id_usuario' => $this->id_usuario,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])

@@ -29,11 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'destino',
             'hora_salida',
             'duracion_viaje',
-            'bus_id',
+            [
+                'attribute'=>'bus_id',
+                'label'=>"Patente Bus",
+                'value' =>function($model){
+                    return $model->bus->patente;
+                }
+            ],
             'hora_llegada',
         ],
     ]) ?>

@@ -26,11 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'patente',
             'capacidad',
-            'anden_id',
-
+            [
+                'header'=>"Numero Anden",
+                'value' =>function($model){
+                    return $model->anden->numero;
+                }
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

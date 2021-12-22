@@ -11,8 +11,10 @@ use Yii;
  * @property string $nombre
  * @property string $apellido
  * @property string $rut
+ * @property int $id_usuario
  *
  * @property Multas[] $multas
+ * @property User $usuario
  */
 class Supervisor extends \yii\db\ActiveRecord
 {
@@ -30,9 +32,11 @@ class Supervisor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'apellido', 'rut'], 'required'],
+            [['nombre', 'apellido', 'rut', 'id_usuario'], 'required'],
+            [['id_usuario'], 'integer'],
             [['nombre', 'apellido'], 'string', 'max' => 40],
             [['rut'], 'string', 'max' => 12],
+            [['id_usuario'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_usuario' => 'id']],
         ];
     }
 
@@ -46,6 +50,7 @@ class Supervisor extends \yii\db\ActiveRecord
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
             'rut' => 'Rut',
+            'id_usuario' => 'Id Usuario',
         ];
     }
 
@@ -57,5 +62,15 @@ class Supervisor extends \yii\db\ActiveRecord
     public function getMultas()
     {
         return $this->hasMany(Multas::className(), ['supervisor_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Usuario]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsuario()
+    {
+        return $this->hasOne(User::className(), ['id' => 'id_usuario']);
     }
 }

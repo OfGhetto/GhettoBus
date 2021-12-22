@@ -29,7 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'destino',
             'hora_salida',
             'duracion_viaje',
-            'bus_id',
+            [
+                'header'=>"Patente Bus",
+                'value' =>function($model){
+                    return $model->bus->patente;
+                }
+            ],
             'hora_llegada',
 
             ['class' => 'yii\grid\ActionColumn'],
