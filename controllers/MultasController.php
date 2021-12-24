@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 use app\models\Multas;
+use app\models\Chofer;
 use app\models\MultasSearch;
+use phpDocumentor\Reflection\Types\Array_;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -43,6 +45,25 @@ class MultasController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionGrafico(){
+
+        $multas = Multas::find()->all();
+        $data = array();
+        $id = 1;
+        foreach ($multas as $mul) {
+            if ($id != $mul->chofer_id) {
+                $cant = Multas::find()->where(['chofer_id'=>$mul['chofer_id']])->count();
+                $rut_chofer = $mul ->chofer->rut;
+                $data[] = [$rut_chofer,intval($cant)];
+                $id = $mul->chofer_id;
+            }
+        }
+        $id = 1;
+        return $this ->render('grafico',[
+            'data' => $data
         ]);
     }
 

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Supervisor */
 
-$this->title = 'Create Supervisor';
+$this->title = 'Crear Supervisor';
 $this->params['breadcrumbs'][] = ['label' => 'Supervisors', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

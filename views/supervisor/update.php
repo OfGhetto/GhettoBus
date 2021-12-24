@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Supervisor */
 
-$this->title = 'Update Supervisor: ' . $model->id;
+$this->title = 'Actualizar Supervisor con rut: ' . $model->rut;
 $this->params['breadcrumbs'][] = ['label' => 'Supervisors', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

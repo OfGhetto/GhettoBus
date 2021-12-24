@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Multas */
 
-$this->title = 'Create Multas';
+$this->title = 'Crear Multa';
 $this->params['breadcrumbs'][] = ['label' => 'Multas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
