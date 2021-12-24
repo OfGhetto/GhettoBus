@@ -15,9 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Viaje', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Viaje', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
+    <p>
+    <?= Html::a('Generar Informe PDF', ['pdf'], ['class' => 'btn btn-danger']) ?>
+    </p>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([

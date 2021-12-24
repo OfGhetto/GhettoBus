@@ -7,6 +7,7 @@ use app\models\ViajeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use kartik\mpdf\Pdf;
 
 /**
  * ViajeController implements the CRUD actions for Viaje model.
@@ -44,6 +45,42 @@ class ViajeController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionPdf() {
+        $searchModel = new ViajeSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        $content = $this->renderPartial('pdf',['dataProvider'=>$dataProvider]);
+        // setup kartik\mpdf\Pdf component
+        $pdf = new Pdf([
+            // set to use core fonts only
+            'mode' => Pdf::MODE_CORE, 
+            // A4 paper format
+            'format' => Pdf::FORMAT_A4, 
+            // portrait orientation
+            'orientation' => Pdf::ORIENT_PORTRAIT, 
+            // stream to browser inline
+            'destination' => Pdf::DEST_BROWSER, 
+            // your html content input
+            'content' => $content,  
+            // format content from your own css file if needed or use the
+            // enhanced bootstrap css built by Krajee for mPDF formatting 
+            'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/pdf.css',
+            // any css to be embedded if required
+            'cssInline' => '.kv-heading-1{font-size:18px}', 
+             // set mPDF properties on the fly
+            'options' => ['title' => 'Krajee Report Title'],
+             // call mPDF methods on the fly
+            'methods' => [ 
+                'SetHeader'=>['Krajee Report Header'], 
+                'SetFooter'=>['{PAGENO}'],
+            ]
+            ]);
+
+        
+        
+        // return the pdf output as per the destination setting
+        return $pdf->render(); 
     }
 
     /**
