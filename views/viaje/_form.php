@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Bus;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -18,7 +20,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'duracion_viaje')->textInput() ?>
 
-    <?= $form->field($model, 'bus_id')->textInput() ?>
+    <?= $form->field($model, 'bus_id')->dropdownList(
+            ArrayHelper::map(Bus::find()->all(),'id','patente',),
+            ['prompt' => 'Seleccione el bus'])->label('Patente del bus') ?>
+
 
     <?= $form->field($model, 'hora_llegada')->textInput() ?>
 

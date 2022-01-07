@@ -22,7 +22,10 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100" style="background: #ADA996;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
 <?php $this->beginBody() ?>
 
 <header>
@@ -31,14 +34,15 @@ AppAsset::register($this);
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+            'class' => 'navbar navbar-light bg-light navbar-expand-md',
+            'style' => 'color: #000000;
+            background: #ADA996;
+            background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);
+            background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);'
         ],
     ]);
     $navItem = [
         ['label' => 'Inicio', 'url' => ['/site/index']],
-        //['label' => 'About', 'url' => ['/site/about']],
-        //['label' => 'Contact', 'url' => ['/site/contact']]
-        
         ['label' => 'Anden', 'url' => ['/anden'], 'visible'=>!Yii::$app->user->isGuest],
         ['label' => 'Bus', 'url' => ['/bus'], 'visible'=>!Yii::$app->user->isGuest],
         ['label' => 'Chofer', 'url' => ['/chofer'], 'visible'=>!Yii::$app->user->isGuest],
@@ -50,7 +54,7 @@ AppAsset::register($this);
         if(Yii::$app->user->isGuest){
             array_push($navItem, ['label' => 'Login', 'url' => ['/site/login']],['label' => 'Register', 'url' => ['/site/register']]);
          }else{
-            array_push($navItem ,'<li>'. Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline']) . Html::submitButton( 'Logout (' . Yii::$app->user->identity->username . ')',['class' => 'btn btn-link logout']). Html::endForm(). '</li>');
+            array_push($navItem ,'<li>'. Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline']) . Html::submitButton( 'Logout (' . Yii::$app->user->identity->username . ')',['class' => 'btn btn-link logout','style'=>'color: #000000']). Html::endForm(). '</li>');
             }
         
     echo Nav::widget([
@@ -71,7 +75,10 @@ AppAsset::register($this);
     </div>
 </main>
 
-<footer class="footer mt-auto py-3 text-muted">
+<footer class="footer mt-auto py-3 text-muted" style="background: #ADA996;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
     <div class="container">
         <p class="float-left">&copy; OfGhetto Dev <?= date('Y') ?></p>
         <p class="float-right"><?= Yii::powered() ?></p>

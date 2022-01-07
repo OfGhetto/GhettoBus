@@ -32,7 +32,7 @@ class Bus extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['patente', 'capacidad', 'anden_id'], 'required'],
+            [['patente', 'capacidad', 'anden_id'], 'required','message'=>'Porfavor ingrese un valor'],
             [['capacidad', 'anden_id'], 'integer'],
             [['patente'], 'string', 'max' => 10],
             [['anden_id'], 'exist', 'skipOnError' => true, 'targetClass' => Anden::className(), 'targetAttribute' => ['anden_id' => 'id']],
@@ -48,7 +48,7 @@ class Bus extends \yii\db\ActiveRecord
             'id' => 'ID',
             'patente' => 'Patente',
             'capacidad' => 'Capacidad',
-            'anden_id' => 'Anden ID',
+            'anden_id' => 'Numero Anden',
         ];
     }
 

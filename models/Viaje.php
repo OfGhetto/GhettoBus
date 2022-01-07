@@ -32,7 +32,7 @@ class Viaje extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['destino', 'hora_salida', 'duracion_viaje', 'bus_id', 'hora_llegada'], 'required'],
+            [['destino', 'hora_salida', 'duracion_viaje', 'bus_id', 'hora_llegada'], 'required','message'=>'Porfavor ingrese un valor'],
             [['hora_salida', 'hora_llegada'], 'safe'],
             [['duracion_viaje', 'bus_id'], 'integer'],
             [['destino'], 'string', 'max' => 45],

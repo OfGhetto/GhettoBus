@@ -32,7 +32,7 @@ class Multas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['valor', 'fecha', 'chofer_id', 'supervisor_id'], 'required'],
+            [['valor', 'fecha', 'chofer_id', 'supervisor_id'], 'required','message'=>'Porfavor ingrese un valor'],
             [['valor', 'chofer_id', 'supervisor_id'], 'integer'],
             [['fecha'], 'safe'],
             [['chofer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Chofer::className(), 'targetAttribute' => ['chofer_id' => 'id']],

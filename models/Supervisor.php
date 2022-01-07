@@ -32,7 +32,7 @@ class Supervisor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'apellido', 'rut', 'id_usuario'], 'required'],
+            [['nombre', 'apellido', 'rut'], 'required','message'=>'Porfavor ingrese un valor'],
             [['id_usuario'], 'integer'],
             [['nombre', 'apellido'], 'string', 'max' => 40],
             [['rut'], 'string', 'max' => 12],

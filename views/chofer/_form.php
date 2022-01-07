@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Bus;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -18,7 +20,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'rut')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'bus_id')->textInput() ?>
+    <?= $form->field($model, 'bus_id')->dropdownList(
+            ArrayHelper::map(Bus::find()->all(),'id','patente'),
+            ['prompt' => 'Seleccione el numero de anden'])->label('Patente del Bus') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>

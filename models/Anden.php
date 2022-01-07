@@ -30,7 +30,7 @@ class Anden extends \yii\db\ActiveRecord
     {
         return [
             [['estado', 'numero'], 'integer'],
-            [['numero'], 'required'],
+            [['numero','estado'], 'required','message'=>'Porfavor ingrese un valor en {attribute}'],
         ];
     }
 

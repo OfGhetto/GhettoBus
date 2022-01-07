@@ -32,7 +32,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username','email'], 'string', 'max' => 80],
+            [['username','email'], 'string', 'max' => 80,'message'=>'Porfavor ingrese un valor en {attribute}'],
             [['password','authKey', 'accesToken'], 'string', 'max' => 255],
         ];
     }

@@ -18,8 +18,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'rut')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_usuario')->textInput() ?>
-
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
