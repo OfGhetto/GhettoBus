@@ -33,6 +33,7 @@ class Chofer extends \yii\db\ActiveRecord
     {
         return [
             [['nombre', 'apellido', 'rut', 'bus_id'], 'required','message'=>'Porfavor ingrese un valor'],
+            [['bus_id'],'required','message'=>'Porfavor ingrese un valor'],
             [['bus_id'], 'integer'],
             [['nombre', 'apellido'], 'string', 'max' => 40],
             [['rut'], 'string', 'max' => 12],
