@@ -33,7 +33,7 @@ class Supervisor extends \yii\db\ActiveRecord
     {
         return [
             [['nombre', 'apellido', 'rut'], 'required','message'=>'Porfavor ingrese un valor'],
-            [['id_usuario'], 'integer'],
+            [['id_usuario'], 'integer','message'=>'Porfavor ingrese un numero'],
             [['nombre', 'apellido'], 'string', 'max' => 40],
             [['rut'], 'string', 'max' => 12],
             [['id_usuario'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_usuario' => 'id']],

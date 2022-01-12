@@ -29,7 +29,7 @@ class Anden extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['estado', 'numero'], 'integer'],
+            [['estado', 'numero'], 'integer', 'message'=>'Porfavor ingrese un numero'],
             [['numero','estado'], 'required','message'=>'Porfavor ingrese un valor en {attribute}'],
         ];
     }

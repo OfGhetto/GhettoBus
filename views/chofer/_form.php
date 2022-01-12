@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'bus_id')->dropdownList(
             ArrayHelper::map(Bus::find()->all(),'id','patente'),
-            ['prompt' => 'Seleccione el numero de anden'])->label('Patente del Bus') ?>
+            ['prompt' => 'Seleccione la patente del Bus'])->label('Patente del Bus') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>

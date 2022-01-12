@@ -32,8 +32,8 @@ class Chofer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'apellido', 'rut', 'bus_id'], 'required','message'=>'Porfavor ingrese un valor'],
-            [['bus_id'],'required','message'=>'Porfavor ingrese un valor'],
+            [['nombre', 'apellido', 'rut'], 'required','message'=>'Porfavor ingrese un valor'],
+            [['bus_id'],'required','message'=>'Porfavor seleccione un valor en {attribute}'],
             [['bus_id'], 'integer'],
             [['nombre', 'apellido'], 'string', 'max' => 40],
             [['rut'], 'string', 'max' => 12],
@@ -51,7 +51,7 @@ class Chofer extends \yii\db\ActiveRecord
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
             'rut' => 'Rut',
-            'bus_id' => 'Bus ID',
+            'bus_id' => 'Patente',
         ];
     }
 

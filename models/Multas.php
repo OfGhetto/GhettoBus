@@ -34,7 +34,7 @@ class Multas extends \yii\db\ActiveRecord
         return [
             [['valor', 'fecha'], 'required','message'=>'Porfavor ingrese un valor'],
             [['chofer_id', 'supervisor_id'],'required','message' =>'Porfavor seleccione un valor en {attribute}'],
-            [['valor', 'chofer_id', 'supervisor_id'], 'integer'],
+            [['valor', 'chofer_id', 'supervisor_id'], 'integer','message'=>'Porfavor ingrese un numero'],
             [['fecha'], 'safe'],
             [['chofer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Chofer::className(), 'targetAttribute' => ['chofer_id' => 'id']],
             [['supervisor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Supervisor::className(), 'targetAttribute' => ['supervisor_id' => 'id']],
